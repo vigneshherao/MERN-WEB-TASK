@@ -1,7 +1,18 @@
 const express = require("express");
 const app = express();
 const port = 8080;
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
+
+//calling the database connection here
+require("./models/db");
+
+
+//middlware 
+
+app.use(bodyParser.json());
+app.use(cors());
 
 
 
