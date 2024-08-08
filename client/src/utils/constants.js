@@ -14,3 +14,7 @@ export const Heading_Content = [
         title:"Earn certifications.",
     }
 ]
+
+
+export const signUpLabel = 'Sign Up to freeCodeCamp Learn';
+export const signInLabel = 'Sign In to freeCodeCamp Learn';
