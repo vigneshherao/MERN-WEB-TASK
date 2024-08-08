@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="bg-black flex items-center justify-between">
+    <div className="bg-custom-dark-purple flex items-center justify-between">
       <div className="hidden sm:block sm:w-[35%]">
         <input
           className="w-full bg-gray-800 p-2 h-7 ml-2"
@@ -11,7 +11,7 @@ const Header = () => {
         />
       </div>
       <div className="flex-grow flex items-center justify-center text-white">
-        <h2 className="text-2xl mr-2">freeCodeCamp</h2>
+        <h2 className="text-2xl mr-2 font-thin">freeCodeCamp</h2>
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpCpzAlmrfzPB_q16Dbvq0IihxEcGEKTZFLA&s"
           alt="logo-header"
