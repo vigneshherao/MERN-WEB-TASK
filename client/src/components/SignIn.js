@@ -2,14 +2,19 @@ import React, { useRef } from "react";
 import { signInLabel } from "../utils/constants";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {setSignedUser } from "../utils/btnSlice";
 
 const SignIn = () => {
+  const user = useSelector((store)=>store?.btns?.isSignedUser);
   const dispatch = useDispatch(); 
   const emailRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
+
+  if(user){
+    navigate("/");
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

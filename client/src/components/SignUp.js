@@ -2,8 +2,10 @@ import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signUpLabel } from "../utils/constants";
 import toast, { Toaster } from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 const SignUp = () => {
+  const user = useSelector((store)=>store?.btns?.isSignedUser);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const nameRef = useRef(null);
@@ -42,6 +44,12 @@ const SignUp = () => {
       }
     } catch (error) {}
   };
+
+  
+  if(user){
+    navigate("/");
+  }
+
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-200">
