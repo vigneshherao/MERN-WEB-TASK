@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { setSignedUser, signOutUser } from "../utils/btnSlice";
 
 const Header = () => {
+
+  const user = useSelector((store)=>store?.btns?.isSignedUser);
+  const dispatch = useDispatch();
+  
+  useEffect(()=>{
+    const signedUser = localStorage.getItem("signedUser");
+    if (signedUser) {
+      dispatch(setSignedUser(signedUser));
+    }
+  },[dispatch])
+
+  const handleSignOut = () => {
+    setTimeout(() => {
+      toast.success(`${user} Signed out successfully`);
+    }, 100);
+    localStorage.removeItem("token");
+    localStorage.removeItem("signedUser");
+    dispatch(signOutUser());
+  };
+
+
   return (
     <div className="bg-custom-dark-purple flex items-center justify-between p-1">
+       <Toaster position="bottom-right" reverseOrder={true} />
       <div className="hidden sm:block sm:w-[35%]">
         <input
           className="w-full bg-gray-800 p-2 h-8 ml-2"
@@ -25,9 +50,12 @@ const Header = () => {
         <button className="bg-transparent border font-semibold text-white px-2 py-1 mr-3 sm:mr-4">
           Menu
         </button>
-        <button className="bg-customYellow font-semibold text-black px-3 py-1 mr-4">
-          <Link to={"/signin"}>Sign in</Link>
-        </button>
+        {
+            user? <button className="bg-customYellow font-semibold text-black px-3 py-1 mr-4" onClick={handleSignOut}>SignOut</button> : <button className="bg-customYellow font-semibold text-black px-3 py-1 mr-4">
+              <Link to={"/signin"}>Sign in</Link>
+            </button>
+          }
+       
       </div>
     </div>
   );

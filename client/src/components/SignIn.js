@@ -2,9 +2,11 @@ import React, { useRef } from "react";
 import { signInLabel } from "../utils/constants";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import {setSignedUser } from "../utils/btnSlice";
 
 const SignIn = () => {
-
+  const dispatch = useDispatch(); 
   const emailRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
@@ -28,13 +30,16 @@ const SignIn = () => {
     const data = await response.json();
     console.log(data)
   
-    const { message, error, sucess } = data;
+    const { message, error, sucess,jwtToken,name } = data;
   
     if (sucess) {
       toast.success(message || "Success");
+      localStorage.setItem('token',jwtToken);
+      localStorage.setItem('signedUser',name);
+      dispatch(setSignedUser(localStorage.getItem('signedUser')));
       setTimeout(()=>{
         navigate("/");
-      },2000)
+      },1000)
     } else if (error) {
       toast.error(error?.details[0]?.message || "Error occurred");
     }

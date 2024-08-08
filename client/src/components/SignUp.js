@@ -35,9 +35,9 @@ const SignUp = () => {
         toast.error(message)
       }
       else{
-        toast.success(message);
+        toast.success(message  + "Please Sign In !");
         setTimeout(()=>{
-          navigate("/");
+          navigate("/signin");
         },2000)
       }
     } catch (error) {}

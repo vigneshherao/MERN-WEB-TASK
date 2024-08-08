@@ -1,19 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const btnSlice = createSlice({
-    name:"btnSlice",
-    initialState:{
-        isSignUp:false,
+  name: "btnSlice",
+  initialState: {
+    isSignedUser: false,
+  },
+  reducers: {
+    signOutUser: (state) => {
+      state.isSignedUser = false;
     },
-    reducers:{
-        toggleSignIn:(state,action)=>{
-            state.isSignUp = !state.isSignUp;
-        }
-    }
-})
+    setSignedUser: (state, action) => {
+      state.isSignedUser = action.payload;
+    },
+  },
+});
 
-
-export const {toggleSignIn} = btnSlice.actions;
+export const {setSignedUser, signOutUser } = btnSlice.actions;
 
 export default btnSlice.reducer;
