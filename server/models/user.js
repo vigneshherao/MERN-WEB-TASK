@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 
 //creating a user Schema body
-const userSchema = new schema({
+const userSchema =new mongoose.Schema({
     name:{
         type:String,
         required:true,

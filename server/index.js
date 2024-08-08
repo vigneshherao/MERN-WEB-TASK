@@ -3,6 +3,7 @@ const app = express();
 const port = 8080;
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const User = require("./models/user");
 
 
 //calling the database connection here
@@ -16,9 +17,11 @@ app.use(cors());
 
 
 
-app.get("/",(req,res)=>{
-    res.send("hello");
-})
+app.get("/", async (req, res) => {
+    const data  = await User.find({});
+    res.send(data);
+});
+
 
 
 app.listen(port,()=>{
