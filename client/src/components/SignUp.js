@@ -1,44 +1,43 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { signUpLabel } from "../utils/constants";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignUp = () => {
-
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const nameRef = useRef(null);
 
-
-
-  const handleSubmit = async ()=>{
-
+  const handleSubmit = async () => {
     const userDetail = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
-      name: nameRef.current.value
+      name: nameRef.current.value,
     };
 
     try {
-      const response = await fetch("http://localhost:8080/user/signup",{
-        method:"POST",
-        headers:{
+      const response = await fetch("http://localhost:8080/user/signup", {
+        method: "POST",
+        headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(userDetail),
-      })
+      });
 
-
-      console.log(response)
-    } catch (error) {
-      
-    }
-  }
-
-
-
+      const result = await response.json();
+      console.log(result);
+      const { success, message, error } = result;
+      if (success) {
+        toast.success(message||"sucess");
+      } else if(error) {
+        toast.error(error?.details[0]?.message);
+      }
+    } catch (error) {}
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-200">
+      <Toaster position="bottom-right" reverseOrder={true} />
       <div className="bg-white w-full max-w-sm border border-gray-300 p-6 shadow-md">
         <div className="flex justify-center mb-6">
           <img
@@ -62,19 +61,22 @@ const SignUp = () => {
           />
 
           <input
-          ref={emailRef}
+            ref={emailRef}
             className="w-full h-10 mb-4 p-2 border border-gray-300 rounded-md"
             type="email"
             placeholder="Email address"
           />
           <input
-          ref={passwordRef}
+            ref={passwordRef}
             className="w-full h-10 mb-4 p-2 border border-gray-300 rounded-md"
             type="password"
             placeholder="Password "
           />
 
-          <button className="w-full h-10 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-600" onClick={handleSubmit}>
+          <button
+            className="w-full h-10 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-600"
+            onClick={handleSubmit}
+          >
             Submit
           </button>
         </form>
