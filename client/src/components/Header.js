@@ -1,6 +1,9 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const Header = () => {
+
+  
   return (
     <div className="bg-custom-dark-purple flex items-center justify-between">
       <div className="hidden sm:block sm:w-[35%]">
@@ -23,7 +26,7 @@ const Header = () => {
           Menu
         </button>
         <button className="bg-yellow-400 font-semibold text-black px-3 py-1 mr-4">
-          Sign in
+          <Link to={"/signin"}>Sign in</Link>
         </button>
       </div>
     </div>

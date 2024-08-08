@@ -1,14 +1,29 @@
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Body from "./components/Body";
-import Header from "./components/Header";
 import SignUp from "./components/SignUp";
+import HeaderLayout from "./components/HeaderLayout";
 
 function App() {
+
+  const appRouter = createBrowserRouter([
+    {
+      path:"/",
+      element: <HeaderLayout />,
+      children: [
+        {
+          path: "/",
+          element: <Body />
+        },
+        {
+          path: "/signin",
+          element: <SignUp />
+        },
+      ]
+    },
+  ]);
+
   return (
-    <div className="App">
-      <Header/>
-      <Body/>
-      <SignUp/>
-    </div>
+    <RouterProvider router={appRouter} />
   );
 }
 

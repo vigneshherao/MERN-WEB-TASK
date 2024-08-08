@@ -5,12 +5,8 @@ const btnSlice = createSlice({
     name:"btnSlice",
     initialState:{
         isSignUp:false,
-        isSignIn:true,
     },
     reducers:{
-        toggleSignUp:(state,action)=>{
-            state.isSignUp = !state.isSignUp;
-        },
         toggleSignIn:(state,action)=>{
             state.isSignUp = !state.isSignUp;
         }
@@ -18,6 +14,6 @@ const btnSlice = createSlice({
 })
 
 
-export const {toggleSignIn,toggleSignUp} = btnSlice.actions;
+export const {toggleSignIn} = btnSlice.actions;
 
 export default btnSlice.reducer;

@@ -1,7 +1,16 @@
 import React from "react";
-import { signInLabel } from "../utils/constants";
+import { signInLabel, signUpLabel } from "../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import {toggleSignIn} from "../utils/btnSlice"
+
 
 const SignUp = () => {
+
+  const dispatch= useDispatch();
+  const isSignIn = useSelector((store)=>store?.btns?.isSignUp)
+
+
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-200">
       <div className="bg-white w-full max-w-sm border border-gray-300 p-6 shadow-md">
@@ -13,14 +22,16 @@ const SignUp = () => {
           />
         </div>
         <h2 className="text-xl font-bold text-center mb-6">
-          {signInLabel}
+          {isSignIn ? signInLabel : signUpLabel}
         </h2>
 
-        <input
+        {
+          isSignIn ? <></>: <input
           className="w-full h-10 mb-4 p-2 border border-gray-300 rounded-md"
           type="name"
           placeholder="Name"
         />
+        }
         <input
           className="w-full h-10 mb-4 p-2 border border-gray-300 rounded-md"
           type="email"
@@ -52,10 +63,12 @@ const SignUp = () => {
         </button>
 
         <p className="text-center text-gray-600  mt-6">
-          Don't have an account yet?{" "}
-          <a href="#" className="text-black hover:underline font-bold">
-            Sign up
-          </a>
+          {isSignIn ? "Don't have an account yet? " : "Already a member? "}
+          <button className="text-black hover:underline font-bold cursor-pointer" onClick={()=>{
+              dispatch(toggleSignIn())
+          }}>
+            {isSignIn ? " Sign up":" Sign in"}
+          </button>
         </p>
       </div>
     </div>
