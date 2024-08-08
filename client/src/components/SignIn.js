@@ -43,8 +43,8 @@ const SignIn = () => {
       localStorage.setItem('signedUser',name);
       dispatch(setSignedUser(localStorage.getItem('signedUser')));
       setTimeout(()=>{
-        navigate("/");
-      },1000)
+        navigate("/courses");
+      },0)
     } else if (error) {
       toast.error(error?.details[0]?.message || "Error occurred");
     }

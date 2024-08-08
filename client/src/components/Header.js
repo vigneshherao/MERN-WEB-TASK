@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { setSignedUser, signOutUser } from "../utils/btnSlice";
@@ -8,6 +8,7 @@ const Header = () => {
 
   const user = useSelector((store)=>store?.btns?.isSignedUser);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   
   useEffect(()=>{
     const signedUser = localStorage.getItem("signedUser");
@@ -19,10 +20,12 @@ const Header = () => {
   const handleSignOut = () => {
     setTimeout(() => {
       toast.success(`${user} Signed out successfully`);
+      navigate("/");
     }, 100);
     localStorage.removeItem("token");
     localStorage.removeItem("signedUser");
     dispatch(signOutUser());
+    
   };
 
 

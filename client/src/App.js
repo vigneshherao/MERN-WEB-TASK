@@ -3,6 +3,7 @@ import Body from "./components/Body";
 import SignUp from "./components/SignUp";
 import HeaderLayout from "./components/HeaderLayout";
 import SignIn from "./components/SignIn";
+import Courses from "./components/Courses";
 
 
 function App() {
@@ -24,6 +25,10 @@ function App() {
           path: "/signup",
           element: <SignUp />
         },
+        {
+          path:"/courses",
+          element:<Courses/>
+        }
       ]
     },
   ]);
