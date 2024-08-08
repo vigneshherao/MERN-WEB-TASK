@@ -11,14 +11,14 @@ const Header = () => {
           placeholder="🔍 Search 10,700+ Courses"
         />
       </div>
-      <div className="flex-grow flex items-center justify-center text-white">
+      <Link to={"/"}><div className="flex-grow flex items-center justify-center text-white">
         <h2 className="text-2xl mr-2 font-thin">freeCodeCamp</h2>
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpCpzAlmrfzPB_q16Dbvq0IihxEcGEKTZFLA&s"
           alt="logo-header"
           className="h-10"
         />
-      </div>
+      </div></Link>
       <div className="w-[35%] flex justify-end">
         <button className="bg-transparent border font-semibold text-white px-2 py-1 mr-3">
           Menu

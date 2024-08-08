@@ -15,26 +15,32 @@ const SignUp = () => {
         </div>
         <h2 className="text-xl font-bold text-center mb-6">{signUpLabel}</h2>
 
-        <input
-          className="w-full h-10 mb-4 p-2 border border-gray-300 rounded-md"
-          type="name"
-          placeholder="Name"
-        />
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <input
+            className="w-full h-10 mb-4 p-2 border border-gray-300 rounded-md"
+            type="name"
+            placeholder="Name"
+          />
 
-        <input
-          className="w-full h-10 mb-4 p-2 border border-gray-300 rounded-md"
-          type="email"
-          placeholder="Email address"
-        />
-        <input
-          className="w-full h-10 mb-4 p-2 border border-gray-300 rounded-md"
-          type="password"
-          placeholder="Password "
-        />
+          <input
+            className="w-full h-10 mb-4 p-2 border border-gray-300 rounded-md"
+            type="email"
+            placeholder="Email address"
+          />
+          <input
+            className="w-full h-10 mb-4 p-2 border border-gray-300 rounded-md"
+            type="password"
+            placeholder="Password "
+          />
 
-        <button className="w-full h-10 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-600">
-          Submit
-        </button>
+          <button className="w-full h-10 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-600">
+            Submit
+          </button>
+        </form>
 
         <div className="flex items-center my-4">
           <hr className="flex-grow border-t border-gray-300" />
