@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signUpLabel } from "../utils/constants";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -7,6 +7,7 @@ const SignUp = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const nameRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     const userDetail = {
@@ -26,11 +27,18 @@ const SignUp = () => {
 
       const result = await response.json();
       console.log(result);
-      const { success, message, error } = result;
-      if (success) {
-        toast.success(message||"sucess");
-      } else if(error) {
+      const { sucess, message, error } = result;
+      debugger;
+      if (error) {
         toast.error(error?.details[0]?.message);
+      } else if(!sucess) {
+        toast.error(message)
+      }
+      else{
+        toast.success(message);
+        setTimeout(()=>{
+          navigate("/");
+        },2000)
       }
     } catch (error) {}
   };

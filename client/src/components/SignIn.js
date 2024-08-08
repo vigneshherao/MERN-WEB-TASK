@@ -1,10 +1,55 @@
-import React from "react";
+import React, { useRef } from "react";
 import { signInLabel } from "../utils/constants";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignIn = () => {
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const userDetail = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+  
+    const response = await fetch("http://localhost:8080/user/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userDetail),
+    });
+  
+    const data = await response.json();
+    console.log(data)
+  
+    const { message, error, sucess } = data;
+  
+    if (sucess) {
+      toast.success(message || "Success");
+      setTimeout(()=>{
+        navigate("/");
+      },2000)
+    } else if (error) {
+      toast.error(error?.details[0]?.message || "Error occurred");
+    }
+    else if(!sucess){
+      toast.error(message);
+    }
+  };
+  
+
+
+
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-200">
+        <Toaster position="bottom-right" reverseOrder={true} />
       <div className="bg-white w-full max-w-sm border border-gray-300 p-6 shadow-md">
         <div className="flex justify-center mb-6">
           <img
@@ -14,20 +59,24 @@ const SignIn = () => {
           />
         </div>
         <h2 className="text-xl font-bold text-center mb-6">{signInLabel}</h2>
+        <form >
         <input
+        ref={emailRef}
           className="w-full h-10 mb-4 p-2 border border-gray-300 rounded-md"
           type="email"
           placeholder="Email address"
         />
         <input
+        ref={passwordRef}
           className="w-full h-10 mb-4 p-2 border border-gray-300 rounded-md"
           type="password"
           placeholder="Password "
         />
 
-        <button className="w-full h-10 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-600">
+        <button className="w-full h-10 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-600" onClick={handleSubmit}>
           Submit
         </button>
+        </form>
 
         <div className="flex items-center my-4">
           <hr className="flex-grow border-t border-gray-300" />
