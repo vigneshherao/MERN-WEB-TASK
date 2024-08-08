@@ -25,7 +25,7 @@ const Header = () => {
         <button className="bg-transparent border font-semibold text-white px-2 py-1 mr-3 sm:mr-4">
           Menu
         </button>
-        <button className="bg-yellow-400 font-semibold text-black px-3 py-1 mr-4">
+        <button className="bg-customYellow font-semibold text-black px-3 py-1 mr-4">
           <Link to={"/signin"}>Sign in</Link>
         </button>
       </div>
