@@ -1,8 +1,8 @@
 import React from "react";
+import { signInLabel } from "../utils/constants";
 import { Link } from "react-router-dom";
-import { signUpLabel } from "../utils/constants";
 
-const SignUp = () => {
+const SignIn = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-200">
       <div className="bg-white w-full max-w-sm border border-gray-300 p-6 shadow-md">
@@ -13,14 +13,7 @@ const SignUp = () => {
             alt="Logo"
           />
         </div>
-        <h2 className="text-xl font-bold text-center mb-6">{signUpLabel}</h2>
-
-        <input
-          className="w-full h-10 mb-4 p-2 border border-gray-300 rounded-md"
-          type="name"
-          placeholder="Name"
-        />
-
+        <h2 className="text-xl font-bold text-center mb-6">{signInLabel}</h2>
         <input
           className="w-full h-10 mb-4 p-2 border border-gray-300 rounded-md"
           type="email"
@@ -52,9 +45,9 @@ const SignUp = () => {
         </button>
 
         <p className="text-center text-gray-600  mt-6">
-          Already a member?
+          Don't have an account yet?
           <button className="text-black hover:underline font-bold cursor-pointer">
-            <Link to={"/signin"}>Sign in</Link>
+            <Link to={"/signup"}>Sign up</Link>
           </button>
         </p>
       </div>
@@ -62,4 +55,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;

@@ -2,8 +2,6 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 const Header = () => {
-
-  
   return (
     <div className="bg-custom-dark-purple flex items-center justify-between">
       <div className="hidden sm:block sm:w-[35%]">
