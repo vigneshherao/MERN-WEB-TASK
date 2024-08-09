@@ -16,6 +16,14 @@ export const Heading_Content = [
 ]
 
 
+export const Apple = "Apple";
+export const Google = "Google";
+export const Microsoft = "Microsoft";
+export const Spotify = "Spotify";
+export const Amazon = "Amazon";
+
+
+
 export const signUpLabel = 'Sign Up to freeCodeCamp Learn';
 export const signInLabel = 'Sign In to freeCodeCamp Learn';
 
