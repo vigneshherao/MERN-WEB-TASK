@@ -4,6 +4,7 @@ const port = 8080;
 const cors = require("cors");
 const User = require("./models/user");
 const userRouter = require("./routes/userRouter")
+const Course = require("./models/course");
 
 
 
@@ -15,13 +16,23 @@ require("./models/db");
 
 app.use(express.json());
 app.use(cors());
+
+
+//routes
 app.use("/user",userRouter);
 
 
-app.get("/", async (req, res) => {
-    const data  = await User.find({});
-    res.send(data);
-});
+
+app.get("/courses",async(req,res)=>{
+    try {
+        const courseDatas = await Course.find({});
+        res.status(200).json(courseDatas);
+    } catch (error) {
+        console.error("Error fetching courses:", error);
+    }
+})
+
+
 
 
 
