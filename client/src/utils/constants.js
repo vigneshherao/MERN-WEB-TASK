@@ -33,3 +33,6 @@ export const Quote_By = "- Thomas A. Edison";
 
 export const Body_Title = "Since 2014, more than 40,000 freeCodeCamp.org graduates have gotten jobs at tech companies including:";
 export const Body_Btn="Get Started(it's free)";
+
+export const Error_MSG = "Oops! Something went wrong.";
+export const Home = "HOME";
