@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GrPersonalComputer } from 'react-icons/gr';
 import { useSelector } from 'react-redux';
+import Shimmer from './Shimmer';
 
 const Courses = () => {
 
@@ -15,7 +16,7 @@ const Courses = () => {
   const fetchCourses = async ()=>{
     const data = await fetch("http://localhost:8080/courses");
     const jsonData = await data.json();
-    console.log(jsonData);
+    setCourses(jsonData);
   }
 
   return (
@@ -26,17 +27,19 @@ const Courses = () => {
         <span className='text-sm sm:text-lg font-thin italic '>- Thomas A. Edison</span>
       </p>
 
-      <div className='mt-8 mb-8'>
-        {courses.map((course, index) => (
+      {
+        courses.length === 0 ? <Shimmer/> : <div className='mt-8 mb-8'>
+        {courses.map((course, ) => (
           <div
-            key={index}
+          key={course?._id}
             className='w-[80%] sm:w-[40%] bg-gray-400 h-16 m-auto text-black border-2 border-black flex items-center mt-4 p-5 hover:bg-custom-dark-blue hover:text-white transition duration-300 ease-in-out'
           >
             <GrPersonalComputer size={32} />
-            <p className='text-sm sm:text-xl ml-5'>{course}</p>
+            <p className='text-sm sm:text-xl ml-5'>{course?.name}</p>
           </div>
         ))}
       </div>
+      }
     </div>
   );
 };
