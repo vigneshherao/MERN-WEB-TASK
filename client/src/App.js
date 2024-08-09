@@ -4,6 +4,7 @@ import SignUp from "./components/SignUp";
 import HeaderLayout from "./components/HeaderLayout";
 import SignIn from "./components/SignIn";
 import Courses from "./components/Courses";
+import Error from "./components/Error";
 
 
 function App() {
@@ -12,23 +13,24 @@ function App() {
     {
       path:"/",
       element: <HeaderLayout />,
+      errorElement:<Error/>,
       children: [
         {
           path: "/",
-          element: <Body />
+          element: <Body />,
         },
         {
           path: "/signin",
-          element: <SignIn />
+          element: <SignIn />,
         },
         {
           path: "/signup",
-          element: <SignUp />
+          element: <SignUp />,
         },
         {
-          path:"/courses",
-          element:<Courses/>
-        }
+          path: "/courses",
+          element: <Courses />,
+        },
       ]
     },
   ]);
