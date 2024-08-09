@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Heading_Content } from '../utils/constants';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Body = () => {
+  const user = useSelector((store)=>store?.btns?.isSignedUser);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user) {
+      navigate("/courses");
+    }
+  }, [user, navigate]);
+
   return (
     <div className='bg-custom-dark-blue w-full h-screen flex flex-col items-center p-6 sm:p-10'>
       <div className="w-full max-w-[800px] text-left mt-10">
