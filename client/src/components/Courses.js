@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GrPersonalComputer } from 'react-icons/gr';
 import { useSelector } from 'react-redux';
-
-const courses = [
-  'Responsive Web Design Certification',
-  'JavaScript Algorithms and Data Structures Certification',
-  'Front End Development Libraries Certification',
-  'Data Visualization Certification',
-  'APIs and Microservices Certification',
-  'Quality Assurance Certification',
-  'APIs and Microservices Certification',
-  'Quality Assurance Certification',
-];
 
 const Courses = () => {
 
   const {isSignedUser} = useSelector((store)=>store?.btns);
+  const [courses,setCourses] = useState([]);
+
+  useEffect(()=>{
+    fetchCourses();
+  },[])
+
+
+  const fetchCourses = async ()=>{
+    const data = await fetch("http://localhost:8080/courses");
+    const jsonData = await data.json();
+    console.log(jsonData);
+  }
 
   return (
     <div className='text-center justify-center'>
