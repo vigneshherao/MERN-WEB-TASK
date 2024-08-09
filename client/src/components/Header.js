@@ -3,19 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { setSignedUser, signOutUser } from "../utils/btnSlice";
+import { CiSearch } from "react-icons/ci";
 
 const Header = () => {
-
-  const user = useSelector((store)=>store?.btns?.isSignedUser);
+  const user = useSelector((store) => store?.btns?.isSignedUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     const signedUser = localStorage.getItem("signedUser");
     if (signedUser) {
       dispatch(setSignedUser(signedUser));
     }
-  },[dispatch])
+  }, [dispatch]);
 
   const handleSignOut = () => {
     setTimeout(() => {
@@ -25,18 +25,17 @@ const Header = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("signedUser");
     dispatch(signOutUser());
-    
   };
-
 
   return (
     <div className="bg-custom-dark-purple flex items-center justify-between p-1">
-       <Toaster position="bottom-right" reverseOrder={true} />
-      <div className="hidden sm:block sm:w-[35%]">
+      <Toaster position="bottom-right" reverseOrder={true} />
+      <div className="hidden sm:flex sm:w-[35%] items-center bg-gray-800 rounded focus:outline-none focus:border-white">
+        <CiSearch className="text-gray-400 ml-2" />
         <input
-          className="w-full bg-gray-800 p-2 h-8 ml-2"
+          className="w-full bg-gray-800 p-2 h-8 ml-2 text-white "
           type="search"
-          placeholder="🔍 Search 10,700+ Courses"
+          placeholder="Search the 10000+ Tutorials"
         />
       </div>
       <Link to={"/"}>
@@ -53,12 +52,18 @@ const Header = () => {
         <button className="bg-transparent border font-semibold text-white px-2 py-1 mr-3 sm:mr-4">
           Menu
         </button>
-        {
-            user? <button className="bg-customYellow font-semibold text-black px-3 py-1 mr-4" onClick={handleSignOut}>SignOut</button> : <button className="bg-customYellow font-semibold text-black px-3 py-1 mr-4">
-              <Link to={"/signin"}>Sign in</Link>
-            </button>
-          }
-       
+        {user ? (
+          <button
+            className="bg-customYellow font-semibold text-black px-3 py-1 mr-4"
+            onClick={handleSignOut}
+          >
+            SignOut
+          </button>
+        ) : (
+          <button className="bg-customYellow font-semibold text-black px-3 py-1 mr-4">
+            <Link to={"/signin"}>Sign in</Link>
+          </button>
+        )}
       </div>
     </div>
   );
