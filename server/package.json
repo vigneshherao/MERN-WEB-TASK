@@ -1,4 +1,8 @@
 {
+  
+    "engines": {
+      "node":"20.11.1",
+    },
   "name": "serverside",
   "version": "1.0.0",
   "description": "This is for the backend side",
