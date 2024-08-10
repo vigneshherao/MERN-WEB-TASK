@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import usePrivateRoute from "../hooks/usePrivateRoute";
 import { Body_Btn, Body_Title, Heading_Content } from "../utils/constants";
 import CompaniesList from "./CompaniesList";
@@ -23,8 +24,8 @@ const Body = () => {
         </p>
         <CompaniesList />
         <div className="sm:flex justify-center mt-5">
-          <button className="bg-customYellow p-3 w-full sm:w-[65%] mt-10 text-2xl font-mono">
-            {Body_Btn}
+          <button className="bg-customYellow p-3 w-full sm:w-[65%] mt-10 text-2xl font-mono shadow-sm hover:bg-yellow-600">
+            <Link to={"/signin"}> {Body_Btn}</Link>
           </button>
         </div>
       </div>

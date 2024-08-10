@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import {setSignedUser } from "../utils/btnSlice";
+import usePrivateRoute from "../hooks/usePrivateRoute";
 
 const SignIn = () => {
   const user = useSelector((store)=>store?.btns?.isSignedUser);
@@ -12,9 +13,7 @@ const SignIn = () => {
   const passwordRef = useRef();
   const navigate = useNavigate();
 
-  if(user){
-    navigate("/courses");
-  }
+  usePrivateRoute();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,10 +32,7 @@ const SignIn = () => {
     });
   
     const data = await response.json();
-    console.log(data)
-  
     const { message, error, sucess,jwtToken,name } = data;
-  
     if (sucess) {
       toast.success(message || "Success");
       localStorage.setItem('token',jwtToken);
