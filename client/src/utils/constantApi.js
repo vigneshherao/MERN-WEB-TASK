@@ -1,6 +1,6 @@
 
 
-export const Fetch_COURSE = "http://localhost:8080/courses";
+export const Fetch_COURSE = "https://mern-web-api.vercel.app/courses";
 
 
 

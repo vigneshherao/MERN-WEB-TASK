@@ -19,7 +19,7 @@ const SignUp = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/user/signup", {
+      const response = await fetch("https://mern-web-api.vercel.app/user/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
