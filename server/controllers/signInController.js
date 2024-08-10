@@ -25,7 +25,7 @@ const signin = async (req, res) => {
     }
 
     //creating jwtToken for the users loggin
-    const jwtToken = jwt.sign({email:user.email,_id:user._id},process.env.JWT_SECRET,{expiresIn:'24h'});
+    const jwtToken = jwt.sign({email:user.email,_id:user._id},process.env.JWT_SECRET,{expiresIn:'14h'});
     res.status(200).json({ message: "signin sucessfull", sucess: true,jwtToken,email,name:user.name});
   } catch (err) {
     res.status(500).json({ message: `signin failed ${err}`, sucess: false });
