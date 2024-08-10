@@ -20,7 +20,7 @@ const courses = [
     await Course.insertMany(initData);
     console.log("Data is initialized");
    } catch (error) {
-    console.error("Error initializing data:", err);
+    console.error("Error initializing data:", error);
    }
 }
 
