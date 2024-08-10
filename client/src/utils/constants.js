@@ -36,3 +36,9 @@ export const Body_Btn="Get Started(it's free)";
 
 export const Error_MSG = "Oops! Something went wrong.";
 export const Home = "HOME";
+
+export const Course_Header = "freeCodeCamp";
+export const FREECODE_IMG = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpCpzAlmrfzPB_q16Dbvq0IihxEcGEKTZFLA&s";
+export const MENU="Menu";
+export const Sign_OUT = "SignOut";
+export const Sign_IN = "Sign in";
