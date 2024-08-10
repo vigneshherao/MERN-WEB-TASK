@@ -22,6 +22,11 @@ app.use(cors());
 app.use("/user",userRouter);
 
 
+app.get("/ping",(req,res)=>{
+    res.send("pong");
+});
+
+
 
 app.get("/courses",async(req,res)=>{
     try {
