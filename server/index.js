@@ -15,7 +15,7 @@ require("./models/db");
 //middlware 
 
 app.use(express.json());
-app.use(cors());
+app.use(cors("https://freecodecamptask.vercel.app"));
 
 
 //routes
