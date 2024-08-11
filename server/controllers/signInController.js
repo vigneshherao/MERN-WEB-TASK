@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 //Here it will check status
-
 const signin = async (req, res) => {
   try {
     const {email, password } = req.body;
@@ -15,7 +14,6 @@ const signin = async (req, res) => {
         .status(403)
         .json({ message: "User not Found, Create One", sucess: false });
     }
-    
     //comparing the password from database if it is not matching show error
     const isPswd = await bcrpyt.compare(password,user.password);
     if(!isPswd){

@@ -13,7 +13,7 @@ module.exports.signUpValidation  = (req,res,next)=>{
 module.exports.signInValidation = (req,res,next)=>{
     const {error} = userSignInSchema.validate(req.body);
     if(error){
-        return res.status(400).json({message:"Bad Reques",error});
+        return res.status(400).json({message:"Bad Request",error});
     }
     next();
 }

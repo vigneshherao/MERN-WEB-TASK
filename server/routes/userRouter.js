@@ -4,10 +4,11 @@ const {signUpValidation,signInValidation}  = require("../middleware/userValidati
 const signUp = require("../controllers/signUpController");
 const signIn = require("../controllers/signInController")
 
-
+//Route checks the path 
 router.post("/signup",signUpValidation,signUp);
 
 router.post("/signin",signInValidation,signIn);
+
 
 
 
