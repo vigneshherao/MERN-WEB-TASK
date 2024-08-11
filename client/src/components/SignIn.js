@@ -1,19 +1,24 @@
 import React, { useRef } from "react";
-import {btnLabel,FreeCode_Log,Google_Logo,NoAccount,signInLabel,signUp,Submit} from "../utils/constants";
+import {FreeCode_Log,NoAccount,signInLabel,signUp,Submit,} from "../utils/constants";
 import { Link } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import usePrivateRoute from "../hooks/usePrivateRoute";
 import useHandleSignIn from "../hooks/useHandleSignIn";
 import { useSelector } from "react-redux";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import useGoogleSuccess from "../hooks/useHandleSignIn";
 
 const SignIn = () => {
+  //Made custom hooks and private routing and code cleaned in sign component
   const { emailError, passwordError } = useSelector((store) => store.validation);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   usePrivateRoute();
   const handleSubmit = useHandleSignIn(emailRef, passwordRef);
+  const handleGoogleSuccess = useGoogleSuccess();
 
   return (
+    <GoogleOAuthProvider clientId="226619249007-7fasp6accavgbc3c43cprrgno33vo28h.apps.googleusercontent.com">
     <div className="flex justify-center items-center min-h-screen bg-gray-200">
       <Toaster position="bottom-right" reverseOrder={true} />
       <div className="bg-white w-full max-w-sm border border-gray-300 p-6 shadow-md">
@@ -68,10 +73,14 @@ const SignIn = () => {
           <hr className="flex-grow border-t border-gray-300" />
         </div>
 
-        <button className="w-full flex items-center justify-center h-10 mb-4 border border-gray-300 rounded-md hover:bg-gray-100">
-          <img className="w-6 mr-2" src={Google_Logo} alt="Google logo" />
-          {btnLabel}
-        </button>
+        <div className="w-full flex items-center justify-center h-12 mb-4  rounded-md hover:bg-gray-100">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onFailure={() => {
+              console.error("Google login error");
+            }}
+          />
+        </div>
 
         <p className="text-center text-gray-600 mt-6">
           {NoAccount}
@@ -81,6 +90,7 @@ const SignIn = () => {
         </p>
       </div>
     </div>
+    </GoogleOAuthProvider>
   );
 };
 

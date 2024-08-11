@@ -1,9 +1,7 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import {
-  btnLabel,
   FreeCode_Log,
-  Google_Logo,
   Have_Account,
   signIn,
   signUpLabel,
@@ -16,9 +14,7 @@ import { useSelector } from "react-redux";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 
 const SignUp = () => {
-  const { emailError, passwordError, nameError } = useSelector(
-    (store) => store.validation
-  );
+  const { emailError, passwordError, nameError } = useSelector((store) => store.validation);
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -35,6 +31,7 @@ const SignUp = () => {
         body: JSON.stringify({ token: credentialResponse.credential }),
       });
       const data = await res.json();
+      console.log(data);
       if (res.ok) {
         console.log("Logged in with Google successfully!");
       } else {
@@ -51,7 +48,7 @@ const SignUp = () => {
   };
 
   return (
-    <GoogleOAuthProvider clientId="297566711441-cbj4087aopt0gjta8of8jmbcbb4mcqrc.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="226619249007-7fasp6accavgbc3c43cprrgno33vo28h.apps.googleusercontent.com">
       <div className="flex justify-center items-center min-h-screen bg-gray-200">
         <Toaster position="bottom-right" reverseOrder={true} />
         <div className="bg-white w-full max-w-sm border border-gray-300 p-6 shadow-md">
@@ -120,14 +117,15 @@ const SignUp = () => {
             <hr className="flex-grow border-t border-gray-300" />
           </div>
 
-          <div className="mt-6">
-            <GoogleLogin
-              onSuccess={handleGoogleSuccess}
-              onError={() => {
-                console.log("error")
-              }}
-            />
-          </div>
+          <div className="w-full flex items-center justify-center h-12 mb-4  rounded-md hover:bg-gray-100">
+  <GoogleLogin
+    onSuccess={handleGoogleSuccess}
+    onFailure={() => {
+      console.error("Google login error");
+    }}
+  />
+</div>
+
 
           <p className="text-center text-gray-600  mt-6">
             {Have_Account}

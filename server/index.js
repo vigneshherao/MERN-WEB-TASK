@@ -34,38 +34,33 @@ app.get("/ping",(req,res)=>{
 });
 
 
-const client = new OAuth2Client("297566711441-cbj4087aopt0gjta8of8jmbcbb4mcqrc.apps.googleusercontent.com");
+const client = new OAuth2Client("226619249007-7fasp6accavgbc3c43cprrgno33vo28h.apps.googleusercontent.com");
 // Google authentication
 app.post('/api/google-auth', async (req, res) => {
     try {
       const { token } = req.body;
       const ticket = await client.verifyIdToken({
         idToken: token,
-        audience: "297566711441-cbj4087aopt0gjta8of8jmbcbb4mcqrc.apps.googleusercontent.com"
+        audience: "226619249007-7fasp6accavgbc3c43cprrgno33vo28h.apps.googleusercontent.com"
       });
-      const { email, sub: googleId } = ticket.getPayload();
+      const { email, sub: googleId,name } = ticket.getPayload();
       
       // Check if user exists
       let user = await User.findOne({ email });
       if (!user) {
         // Create new user if doesn't exist
-        user = new User({ email, googleId });
+        user = new User({ email, googleId ,name});
+        console.log(user);
         await user.save();
       }
       
       // Create and assign token
-      const jwtToken = jwt.sign({ _id: user._id }, "vignesh-2019");
-      res.json({ token: jwtToken });
+      const jwtToken = jwt.sign({email:user.email,_id:user._id},process.env.JWT_SECRET,{expiresIn:'14h'});
+      res.status(200).json({ message: "signin sucessfull", sucess: true,jwtToken,email,name:user.name});
     } catch (error) {
       res.status(500).json({ error: 'Server error' });
     }
   });
-  
-  // Protected route example
-  app.get('/api/protected', (req, res) => {
-    res.json({ message: 'This is a protected route', userId: req.user._id });
-  });
-
 
 
 
