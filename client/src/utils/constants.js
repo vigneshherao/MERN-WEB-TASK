@@ -42,3 +42,21 @@ export const FREECODE_IMG = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd
 export const MENU="Menu";
 export const Sign_OUT = "SignOut";
 export const Sign_IN = "Sign in";
+
+
+export const FreeCode_Log = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpCpzAlmrfzPB_q16Dbvq0IihxEcGEKTZFLA&s";
+export const Submit = "Submit";
+export const Google_Logo = "https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg";
+export const btnLabel = " Continue with Google";
+export const NoAccount="Don't have an account yet?";
+export const signUp = "Sign up";
+export const Have_Account = " Already a member?";
+export const signIn = "Sign in";
+
+
+export const Login_Failed =  "Login failed. Please try again.";
+export const Error_Occured = "Error occurred";
+export const Email= "email";
+export const password = "password";
+export const success_MSG = "Success";
+export const Req = "Please Sign In !";

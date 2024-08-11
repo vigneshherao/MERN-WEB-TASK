@@ -14,10 +14,17 @@ const userSchema =new mongoose.Schema({
         unique:true
         
     },
-    password:{
-        type:String,
-        required:true,
-        
+    password: {
+        type: String,
+        // Custom validation: password is required if googleId is not provided
+        required: function() {
+            return !this.googleId;
+        },
+    },
+    googleId: {
+        type: String,
+        unique: true,
+        sparse: true, // Allows for users without a Google ID
     }
 })
 
