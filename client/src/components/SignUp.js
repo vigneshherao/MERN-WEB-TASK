@@ -1,50 +1,24 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import {
-  FreeCode_Log,
-  Have_Account,
-  signIn,
-  signUpLabel,
-  Submit,
-} from "../utils/constants";
+import {FreeCode_Log,Have_Account,signIn,signUpLabel,Submit,} from "../utils/constants";
 import { Toaster } from "react-hot-toast";
 import usePrivateRoute from "../hooks/usePrivateRoute";
 import useHandleSignUp from "../hooks/useHandleSignUp";
 import { useSelector } from "react-redux";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import useGoogleSuccess from "../hooks/useGoogleSucess";
 
 const SignUp = () => {
   const { emailError, passwordError, nameError } = useSelector((store) => store.validation);
-
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const nameRef = useRef(null);
-
   const handleSubmit = useHandleSignUp(emailRef, passwordRef, nameRef);
   usePrivateRoute();
-
-  const handleGoogleSuccess = async (credentialResponse) => {
-    try {
-      const res = await fetch(`http://localhost:8080/api/google-auth`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: credentialResponse.credential }),
-      });
-      const data = await res.json();
-      console.log(data);
-      if (res.ok) {
-        console.log("Logged in with Google successfully!");
-      } else {
-        console.log(data.error || "Google login failed");
-      }
-    } catch (error) {
-      // setMessage("An error occurred");
-    }
-  };
-
-  const handleGoogleFailure = (error) => {
-    console.error("Google Sign-In Failed", error);
-    // setMessage("Google sign-in failed. Please try again.");
+  const handleGoogleSuccess = useGoogleSuccess();
+  const onSubmit = (e) => {
+    e.preventDefault(); 
+    handleSubmit();
   };
 
   return (
@@ -58,9 +32,7 @@ const SignUp = () => {
           <h2 className="text-xl font-bold text-center mb-6">{signUpLabel}</h2>
 
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-            }}
+           onSubmit={onSubmit}
           >
             <div className="relative mb-2">
               {nameError && (
@@ -105,7 +77,6 @@ const SignUp = () => {
 
             <button
               className="w-full h-10 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-600"
-              onClick={handleSubmit}
             >
               {Submit}
             </button>
@@ -118,14 +89,13 @@ const SignUp = () => {
           </div>
 
           <div className="w-full flex items-center justify-center h-12 mb-4  rounded-md hover:bg-gray-100">
-  <GoogleLogin
-    onSuccess={handleGoogleSuccess}
-    onFailure={() => {
-      console.error("Google login error");
-    }}
-  />
-</div>
-
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onFailure={() => {
+                console.error("Google login error");
+              }}
+            />
+          </div>
 
           <p className="text-center text-gray-600  mt-6">
             {Have_Account}

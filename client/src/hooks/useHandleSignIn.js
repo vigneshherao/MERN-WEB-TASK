@@ -10,9 +10,7 @@ const useHandleSignIn = (emailRef, passwordRef) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async () => {
     const userDetail = {
       email: emailRef.current.value,
       password: passwordRef.current.value,

@@ -6,7 +6,8 @@ import usePrivateRoute from "../hooks/usePrivateRoute";
 import useHandleSignIn from "../hooks/useHandleSignIn";
 import { useSelector } from "react-redux";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-import useGoogleSuccess from "../hooks/useHandleSignIn";
+import useGoogleSuccess from "../hooks/useGoogleSucess";
+
 
 const SignIn = () => {
   //Made custom hooks and private routing and code cleaned in sign component
@@ -16,6 +17,10 @@ const SignIn = () => {
   usePrivateRoute();
   const handleSubmit = useHandleSignIn(emailRef, passwordRef);
   const handleGoogleSuccess = useGoogleSuccess();
+  const onSubmit = (e) => {
+    e.preventDefault(); 
+    handleSubmit();
+  };
 
   return (
     <GoogleOAuthProvider clientId="226619249007-7fasp6accavgbc3c43cprrgno33vo28h.apps.googleusercontent.com">
@@ -26,7 +31,7 @@ const SignIn = () => {
           <img className="w-10" src={FreeCode_Log} alt="Logo" />
         </div>
         <h2 className="text-xl font-bold text-center mb-6">{signInLabel}</h2>
-        <form>
+        <form onSubmit={onSubmit}>
           <div className="relative mb-4 mt-6">
             {emailError && (
               <span className="absolute text-red-600 text-sm -top-5 left-0">
@@ -61,7 +66,6 @@ const SignIn = () => {
 
           <button
             className="w-full h-10 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-600"
-            onClick={handleSubmit}
           >
             {Submit}
           </button>

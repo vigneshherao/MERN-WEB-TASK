@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { CiSearch } from "react-icons/ci";
 import useUserHandle from "../hooks/useUserHandle";
-import { Course_Header, FREECODE_IMG, MENU, Sign_IN, Sign_OUT } from "../utils/constants";
+import {Course_Header,FREECODE_IMG,MENU,Sign_IN,Sign_OUT,} from "../utils/constants";
 
 const Header = () => {
-  
-  const [user,handleSignOut] = useUserHandle();
+  //handles the user and Sign out functionality using custom hook
+  const [user, handleSignOut] = useUserHandle();
 
   return (
     <div className="bg-custom-dark-purple flex items-center justify-between p-1">
@@ -22,12 +22,10 @@ const Header = () => {
       </div>
       <Link to={"/"}>
         <div className="flex-grow flex items-center justify-center text-white">
-          <h2 className="text-xl sm:text-2xl mr-2 font-thin">{Course_Header}</h2>
-          <img
-            src={FREECODE_IMG}
-            alt="logo-header"
-            className="h-8 sm:h-10"
-          />
+          <h2 className="text-xl sm:text-2xl mr-2 font-thin">
+            {Course_Header}
+          </h2>
+          <img src={FREECODE_IMG} alt="logo-header" className="h-8 sm:h-10" />
         </div>
       </Link>
       <div className="sm:w-[35%] flex justify-end  sm:justify-end mt-2 sm:mt-0">

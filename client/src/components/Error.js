@@ -4,6 +4,7 @@ import { Error_MSG, Home } from '../utils/constants';
 
 const Error = () => {
 
+    //calling Error router
     const err = useRouteError();
 
     return (

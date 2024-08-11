@@ -16,7 +16,6 @@ const userSchema =new mongoose.Schema({
     },
     password: {
         type: String,
-        // Custom validation: password is required if googleId is not provided
         required: function() {
             return !this.googleId;
         },
@@ -24,7 +23,7 @@ const userSchema =new mongoose.Schema({
     googleId: {
         type: String,
         unique: true,
-        sparse: true, // Allows for users without a Google ID
+        sparse: true, 
     }
 })
 
