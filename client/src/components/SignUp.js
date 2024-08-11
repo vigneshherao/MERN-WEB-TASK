@@ -20,9 +20,11 @@ const SignUp = () => {
     e.preventDefault(); 
     handleSubmit();
   };
+  const clientId = process.env.REACT_APP_CLIENT_ID;
+
 
   return (
-    <GoogleOAuthProvider clientId="226619249007-7fasp6accavgbc3c43cprrgno33vo28h.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={clientId}>
       <div className="flex justify-center items-center min-h-screen bg-gray-200">
         <Toaster position="bottom-right" reverseOrder={true} />
         <div className="bg-white w-full max-w-sm border border-gray-300 p-6 shadow-md">
