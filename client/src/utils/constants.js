@@ -60,3 +60,4 @@ export const Email= "email";
 export const password = "password";
 export const success_MSG = "Success";
 export const Req = "Please Sign In !";
+export const User_SignOut = "Signed out successfully";

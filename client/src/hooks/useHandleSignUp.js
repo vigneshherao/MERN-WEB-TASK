@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Sign_ROUTE, SignUP_API } from "../utils/constantApi";
-import { setEmailError, setnameError, setPasswordError } from "../utils/validationSlice";
+import {setEmailError,setnameError,setPasswordError,} from "../utils/validationSlice";
 import { useDispatch } from "react-redux";
 import { Email, password, Req } from "../utils/constants";
 
@@ -27,10 +27,10 @@ const useHandleSignUp = (emailRef, passwordRef, nameRef) => {
 
       const result = await response.json();
       const { sucess, message, error } = result;
-      
+
       dispatch(setEmailError(""));
       dispatch(setPasswordError(""));
-      dispatch(setnameError(""))  
+      dispatch(setnameError(""));
 
       if (error) {
         toast.error(error?.details[0]?.message);
@@ -38,8 +38,7 @@ const useHandleSignUp = (emailRef, passwordRef, nameRef) => {
           dispatch(setEmailError(error.details[0]?.message));
         } else if (error.details[0]?.context.key === password) {
           dispatch(setPasswordError(error.details[0]?.message));
-        }
-        else{
+        } else {
           dispatch(setnameError(error.details[0]?.message));
         }
       } else if (!sucess) {

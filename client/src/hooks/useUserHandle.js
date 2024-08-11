@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { setSignedUser, signOutUser } from "../utils/btnSlice";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { User_SignOut } from "../utils/constants";
 
 const useUserHandle = () => {
   const user = useSelector((store) => store?.btns?.isSignedUser);
@@ -18,7 +19,7 @@ const useUserHandle = () => {
 
   const handleSignOut = () => {
     setTimeout(() => {
-      toast.success(`${user} Signed out successfully`);
+      toast.success(user + User_SignOut);
       navigate("/");
     }, 1000);
     localStorage.removeItem("token");

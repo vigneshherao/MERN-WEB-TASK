@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 import { setSignedUser } from "../utils/btnSlice";
-import { Course_Route } from "../utils/constantApi";
+import { Course_Route, GoogleAPI } from "../utils/constantApi";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Login_Failed, success_MSG } from "../utils/constants";
@@ -10,16 +10,8 @@ const useGoogleSuccess = () => {
   const navigate = useNavigate();
 
   const handleGoogleSuccess = async (credentialResponse) => {
-
-
     try {
-        console.log("Google Login Attempted", credentialResponse);
-        if (!credentialResponse || !credentialResponse.credential) {
-          console.error("Google login failed: no credential received.");
-          toast.error("Google login failed: no credential received.");
-          return;
-        }
-      const response = await fetch(`http://localhost:8080/api/google-auth`, {
+      const response = await fetch(GoogleAPI, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token: credentialResponse.credential }),
