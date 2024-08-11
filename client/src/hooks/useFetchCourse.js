@@ -20,7 +20,12 @@ const useFetchCourse = () => {
 
   //fetching function
   const fetchCourses = async () => {
-    const data = await fetch(Fetch_COURSE);
+    const headers = {
+      headers:{
+        'Authorization':localStorage.getItem('token'),
+      }
+    }
+    const data = await fetch(Fetch_COURSE,headers);
     const jsonData = await data.json();
     setCourses(jsonData);
   };
